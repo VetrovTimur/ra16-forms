@@ -11,23 +11,23 @@ export const TrainingAccount = () => {
       done: false
     }
   ]);
+  let [idTest, setIdTest] = useState({});
 
-  let arrValue;
-  let arrFilter
   
-  const putTodo = (value, date) => {
+  const putTodo = (value, date, idTest) => {
     setTodos([...todos, {id: date, distance: +(value), done: false}]);
+    setIdTest(idTest = {id: date});
 
-    arrValue = {
-      id: date,
-      distance: todos.filter(todo => todo.id === date).map(todo => todo.distance).reduce((acc, el) => acc + el, 0),
-      done: false
-    }
+    // arrValue = {
+    //   id: date,
+    //   distance: todos.filter(todo => todo.id === date).map(todo => todo.distance).reduce((acc, el) => acc + el, 0),
+    //   done: false
+    // }
 
-    arrFilter = todos.filter(todo => todo.id !== date);
-    arrFilter.push(arrValue);
+    // arrFilter = todos.filter(todo => todo.id !== date);
+    // arrFilter.push(arrValue);
     
-    console.log(arrFilter);
+    // console.log(arrFilter);
   }
   
   return (
@@ -35,7 +35,7 @@ export const TrainingAccount = () => {
       <div className='container'>
         <h1 className='title'>Test</h1>
         <Form  putTodo={putTodo} />
-        <Todo todos={todos}/>  
+        <Todo todos={todos} idTest={idTest}/>  
       </div>
     </div>
   )
