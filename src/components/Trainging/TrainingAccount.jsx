@@ -4,26 +4,22 @@ import { Todo } from "./Todo";
 
 
 export const TrainingAccount = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: '',
-      distance: [],
-      done: false
-    }
-  ]);
-  let [idTest, setIdTest] = useState({});
+  const [todos, setTodos] = useState([]);
+  
+  const putTodo = (value, date) => {
+    setTodos([...todos, {id: date, distance: +(value)}]);
+
+  }
+
 
   
-  const putTodo = (value, date, idTest) => {
-    setTodos([...todos, {id: date, distance: +(value), done: false}]);
-    setIdTest(idTest = {id: date});
-  }
-  
+
+
   return (
       <div className='containerTraining'>
         <h1 className='title'>Training list</h1>
         <Form  putTodo={putTodo} />
-        <Todo todos={todos} idTest={idTest}/>  
+        <Todo todos={todos}/>  
       </div>
   )
 }

@@ -1,22 +1,26 @@
-
-
 export const Todo = (props) => {
-   const {todos, idTest} = props;
+    const {todos} = props;
+    let arrTest = [];
 
-    let arrFilterNo = todos.filter(todo => todo.id !== idTest.id);
-    let arrRez = {
-        id: '', 
-        distance: 0
-    };
+    if(todos.length !== 0) {
+        todos.map(el => (
+            arrTest.push(el)
+        ));
+        
 
-    arrRez.id = idTest.id;
-    arrRez.distance = todos.filter(todo => todo.id == idTest.id).map(arr => arr.distance).reduce((acc, el) => acc + el, 0)
-    arrFilterNo.push(arrRez);
+        arrTest = arrTest.sort(function(a, b) {
+            if ( +(a.id.split('-').join('')) > +(b.id.split('-').join('')) ) return -1;
+        })
 
-  return (
+
+    }
+
+    console.log(arrTest);
+
+    return (
     <div>
         {
-            arrFilterNo.map((arr, index) => (
+            arrTest.map((arr, index) => (
                 <div key={index} className="boxContentTraining">
                     <div className="boxDate">
                         {arr.id}
@@ -28,5 +32,5 @@ export const Todo = (props) => {
             ))
         }
     </div>
-  )
+    )
 }
