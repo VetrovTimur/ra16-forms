@@ -3,9 +3,28 @@ export const Todo = (props) => {
     let arrTest = [];
 
     if(todos.length !== 0) {
-        todos.map(el => (
-            arrTest.push(el)
-        ));
+
+        todos.map(el => {
+
+            if(arrTest.length === 0) {
+                arrTest.push(el)
+            } else {
+                arrTest.map(arr => {
+                    if (arr.id === el.id) {
+                        return arr.distance += el.distance;
+                    } else {
+                        arrTest.push(el)
+                    }
+                })
+            }
+
+            
+
+
+
+            
+
+        });
         
 
         arrTest = arrTest.sort(function(a, b) {
