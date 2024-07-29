@@ -2,31 +2,28 @@
 
 export const Todo = (props) => {
    const {todos, idTest} = props;
-   
-   console.log('Итоговый', todos);
-   console.log('ID', idTest);
 
     let arrFilterNo = todos.filter(todo => todo.id !== idTest.id);
-    let arrFilterYes = todos.filter(todo => todo.id == idTest.id);
-    let arrRez = [{
+    let arrRez = {
         id: '', 
         distance: 0
-    }];
-    arrRez.id = idTest.id;
-    arrRez.distance = arrFilterYes.map(arr => arr.distance).reduce((acc, el) => acc + el, 0)
-    arrFilterNo.push(arrRez);
+    };
 
-   
-    console.log('No repeat', arrFilterNo);
-    console.log('Yes repeat', arrFilterYes);
+    arrRez.id = idTest.id;
+    arrRez.distance = todos.filter(todo => todo.id == idTest.id).map(arr => arr.distance).reduce((acc, el) => acc + el, 0)
+    arrFilterNo.push(arrRez);
 
   return (
     <div>
         {
-            todos.map((todo, index) => (
-                <div key={index}>
-                    <div>{todo.id}</div>
-                    <div>{todo.distance}</div>
+            arrFilterNo.map((arr, index) => (
+                <div key={index} className="boxContentTraining">
+                    <div className="boxDate">
+                        {arr.id}
+                    </div>
+                    <div className="boxDistance">
+                        {arr.distance}
+                        </div>
                 </div>
             ))
         }
