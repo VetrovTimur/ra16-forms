@@ -10,13 +10,22 @@ export const ConvertorColor = () => {
     const handleValueChange = ({target}) => {
         const _containerColor = containerColor.current;
         const _textColor = textColor.current;
+        var regexFilterValue = /^#[a-fA-F0-9]+$/;
+
         let {value} = target;
 
         setForm(prevForm => ({...prevForm, value: value}))
 
         if (value.length === 9) {
-            _textColor.textContent = hexToRgb(value)
-            _containerColor.style.backgroundColor = value;
+            console.log(regexFilterValue.test(value))
+            if(regexFilterValue.test(value)) {
+                _textColor.textContent = hexToRgb(value)
+                _containerColor.style.backgroundColor = value;
+            } else {
+                _textColor.textContent = `Ошибка`;
+                _containerColor.style.background = 'red';
+            }
+
         } else if (value.length >= 10) {
             _textColor.textContent = `Ошибка`;
             _containerColor.style.background = 'red';
